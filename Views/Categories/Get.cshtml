@@ -1,0 +1,26 @@
+@model PowerBI.Models.Category
+@{
+    ViewData["Title"] = "Detalles de la Categoría";
+}
+
+<h2>@Model.Name</h2>
+
+<p><strong>Descripción:</strong> @Model.Name</p>
+<p><strong>Número de Reportes:</strong> @Model.Reports?.Count ?? 0</p>
+
+<h3>Reportes Asociados</h3>
+@if (Model.Reports != null && Model.Reports.Any())
+{
+    <ul>
+        @foreach (var report in Model.Reports)
+        {
+            <li>@report.Name</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay reportes asociados a esta categoría.</p>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Volver a la Lista</a>

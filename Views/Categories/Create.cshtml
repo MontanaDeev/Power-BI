@@ -1,0 +1,16 @@
+@model PowerBI.Models.Category
+@{
+    ViewData["Title"] = "Agregar Nueva Categoría";
+}
+
+<h2>Agregar Nueva Categoría</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="Name">Nombre de la Categoría</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+    
+    <button type="submit" class="btn btn-primary mt-3">Agregar Categoría</button>
+    <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
+</form>

@@ -15,9 +15,12 @@
         <label for="CategoryId">Categoría (opcional)</label>
         <select id="CategoryId" name="CategoryId" class="form-control">
             <option value="">Sin categoría</option>
-            @foreach (var category in ViewBag.Categories as List<PowerBI.Models.Category>)
+            @if (ViewBag.Categories != null)
             {
-                <option value="@category.idCategory">@category.Name</option>
+                @foreach (var category in ViewBag.Categories as List<PowerBI.Models.Category>)
+                {
+                    <option value="@category.idCategory">@category.Name</option>
+                }
             }
         </select>
         <small class="form-text text-muted">Puede dejarlo en "Sin categoría" si no desea asignar una categoría.</small>

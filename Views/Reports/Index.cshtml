@@ -14,7 +14,17 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@report.Name</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">@report.Category?.Name</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Categoría: 
+                        @if (!string.IsNullOrEmpty(report.Category?.Name))
+                        {
+                            @report.Category.Name
+                        }
+                        else
+                        {
+                            <span>Sin categoría</span>
+                        }
+                    </h6>
 
                     <!-- Contenedor para mostrar el reporte de Power BI en un iframe -->
                     @if (!string.IsNullOrEmpty(report.publicLink))
@@ -44,3 +54,4 @@
         </div>
     }
 </div>
+

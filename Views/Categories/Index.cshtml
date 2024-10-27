@@ -1,0 +1,50 @@
+@model List<PowerBI.Models.Category>
+@{
+    ViewData["Title"] = "Lista de Categorías";
+}
+
+<h2>Lista de Categorías</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Agregar Nueva Categoría</a>
+
+<!-- Tabla de categorías con sus reportes -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre de la Categoría</th>
+            <th>Número de Reportes</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>@category.Reports.Count</td>
+                <td>
+                    <a asp-action="Get" asp-route-id="@category.idCategory" class="btn btn-info">Ver</a>
+                    <form asp-action="Delete" asp-route-id="@category.idCategory" method="post" class="d-inline"
+                          onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Sección para los reportes sin categoría -->
+@if (ViewBag.ReportsWithoutCategory != null && ((List<PowerBI.Models.Report>)ViewBag.ReportsWithoutCategory).Any())
+{
+    <h3>Reportes sin Categoría</h3>
+    <ul class="list-group">
+        @foreach (var report in ViewBag.ReportsWithoutCategory as List<PowerBI.Models.Report>)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>@report.Name</span>
+                <a asp-controller="Reports" asp-action="ViewReport" asp-route-id="@report.idReport" class="btn btn-info btn-sm">Ver</a>
+            </li>
+        }
+    </ul>
+}
