@@ -1,0 +1,13 @@
+@model PowerBI.Models.Report
+@{
+    ViewData["Title"] = "Ver Reporte";
+}
+
+<h2>@Model.Name</h2>
+
+<div style="height: 90vh; width: 100%; margin-top: 20px;">
+    <iframe src="@Model.publicLink" width="100%" height="100%" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+
+</div>
+
+
