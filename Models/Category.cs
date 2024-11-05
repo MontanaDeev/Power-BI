@@ -10,7 +10,9 @@ namespace PowerBI.Models
     {
         [Key]
         public int idCategory { get; set; }
+        public int idUser { get; set; }
         public string? Name { get; set; } = string.Empty;
+        public User User { get; set; } = new User();
         public List<Report>? Reports{ get; set; } = new List<Report>();
     }
 }
